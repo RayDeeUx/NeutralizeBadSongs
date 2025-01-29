@@ -113,15 +113,19 @@ namespace Utils {
 		}
 	}
 
-	bool refreshLists(Manager* manager) {
+	bool refreshLists() {
+		Utils::refreshReplacementPool();
+		Utils::readTextFiles();
+		return true;
+	}
+
+	void refreshReplacementPool(Manager *manager) {
 		manager->oneReplacementSong = getString("oneReplacementSong");
 		if (!PlayLayer::get()) manager->songIDToReplacement.clear(); // better safe than sorry :3
 		std::vector<std::string>& configDirSongs = manager->configDirSongs;
 		configDirSongs.clear();
 		Utils::addDirToReplacementSongPool(configDirSongs);
 		Utils::addDirToReplacementSongPool(configDirSongs, Utils::getString("additionalFolder"));
-		Utils::readTextFiles();
-		return true;
 	}
 
 	void readTextFiles(Manager* manager) {

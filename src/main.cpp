@@ -158,6 +158,7 @@ class $modify(MyCustomSongWidget, CustomSongWidget) {
 	}
 	void onBanArtistNBSAA(CCObject*) {
 		if (!Utils::modEnabled()) return;
+		if (Utils::getBool("autoRefreshReplacements")) Utils::refreshReplacementPool();
 		const auto fields = m_fields.self();
 		if (!Utils::addBadArtist(fields->songID, fields->artistName, fields->songName, !fields->extraArtistIDs.empty())) return;
 		Notification::create(fmt::format("{}'s songs are now banned.", fields->artistName), NotificationIcon::Success, 3.0f)->show();
@@ -165,6 +166,7 @@ class $modify(MyCustomSongWidget, CustomSongWidget) {
 	}
 	void onBanSongNBSAA(CCObject*) {
 		if (!Utils::modEnabled()) return;
+		if (Utils::getBool("autoRefreshReplacements")) Utils::refreshReplacementPool();
 		const auto fields = m_fields.self();
 		if (!Utils::addBadSongID(fields->songID, fields->songName)) return;
 		Notification::create(fmt::format("\"{}\" is now banned.", fields->songName), NotificationIcon::Success, 3.0f)->show();

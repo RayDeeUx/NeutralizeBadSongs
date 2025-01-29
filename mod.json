@@ -28,6 +28,11 @@
 			"description": "Refreshes your replacement songs, banned artists, and banned song IDs.",
 			"type": "custom:updatelists"
 		},
+		"autoRefreshReplacements": {
+			"name": "Auto Refresh Replacement Songs Pool",
+			"type": "bool",
+			"default": true
+		},
 		"additionalFolder": {
 			"name": "Additional Replacement Songs Pool Folder",
 			"type": "folder",

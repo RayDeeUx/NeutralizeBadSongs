@@ -58,7 +58,8 @@ namespace Utils {
 	bool addBadArtist(const int& songID, const std::string& artistName, const std::string_view songName, const bool& multipleArtists = false, Manager* manager = Manager::getSharedInstance());
 
 	void addDirToReplacementSongPool(std::vector<std::string> &configDirSongs, const std::filesystem::path& folderPath = Mod::get()->getConfigDir());
-	bool refreshLists(Manager* manager = Manager::getSharedInstance());
+	bool refreshLists();
+	void refreshReplacementPool(Manager* manager = Manager::getSharedInstance());
 	void readTextFiles(Manager* manager = Manager::getSharedInstance());
 	std::string randomSongFromConfigDir(Manager* manager = Manager::getSharedInstance());
 }
