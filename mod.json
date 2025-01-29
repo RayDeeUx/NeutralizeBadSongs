@@ -69,6 +69,11 @@
 				]
 			}
 		},
+		"dontPlaySongAtAll": {
+			"name": "Don't Play Replacement Songs (Use Empty Song Instead)",
+			"type": "bool",
+			"default": false
+		},
 		"useNotificationInstead": {
 			"name": "Use Geode Notifications For Previously Banned Songs/Artists",
 			"description": "If disabled, you will get FLAlertLayers instead.",
@@ -86,7 +91,10 @@
 			"spritesheetOne": [
 				"resources/*.png"
 			]
-		}
+		},
+		"files": [
+			"resources/empty.mp3"
+		]
 	},
 	"issues": {
 		"url": "https://discord.com/channels/911701438269386882/1205523212444639292",

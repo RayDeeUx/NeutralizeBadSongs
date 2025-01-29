@@ -43,6 +43,8 @@ class $modify(MyMusicDownloadManager, MusicDownloadManager) {
 
 		if (!Utils::modEnabled() || Utils::isStringFromJukebox(originalPath) || !PlayLayer::get() || manager->configDirSongs.empty()) return originalPath;
 
+		if (Utils::getBool("dontPlaySongAtAll")) return "empty.mp3"_spr;
+
 		if (Utils::getBool("onlyOneReplacement")) {
 			if (manager->oneReplacementSong.empty() || !std::filesystem::exists(manager->oneReplacementSong))
 				return originalPath;
@@ -158,17 +160,23 @@ class $modify(MyCustomSongWidget, CustomSongWidget) {
 	}
 	void onBanArtistNBSAA(CCObject*) {
 		if (!Utils::modEnabled()) return;
+
 		if (Utils::getBool("autoRefreshReplacements")) Utils::refreshReplacementPool();
+
 		const auto fields = m_fields.self();
 		if (!Utils::addBadArtist(fields->songID, fields->artistName, fields->songName, !fields->extraArtistIDs.empty())) return;
+
 		Notification::create(fmt::format("{}'s songs are now banned.", fields->artistName), NotificationIcon::Success, 3.0f)->show();
 		MyCustomSongWidget::cleanupBanMenu("ban-artist-button"_spr);
 	}
 	void onBanSongNBSAA(CCObject*) {
 		if (!Utils::modEnabled()) return;
+
 		if (Utils::getBool("autoRefreshReplacements")) Utils::refreshReplacementPool();
+
 		const auto fields = m_fields.self();
 		if (!Utils::addBadSongID(fields->songID, fields->songName)) return;
+
 		Notification::create(fmt::format("\"{}\" is now banned.", fields->songName), NotificationIcon::Success, 3.0f)->show();
 		MyCustomSongWidget::cleanupBanMenu("ban-song-button"_spr);
 	}
