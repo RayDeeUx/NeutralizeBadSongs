@@ -22,7 +22,7 @@ $on_mod(Loaded) {
 	});
 	listenForSettingChanges("additionalFolder", [](std::filesystem::path additionalFolder) {
 		Manager* manager = Manager::getSharedInstance();
-		std::vector<std::string>& configDirSongs = manager->configDirSongs;
+		std::vector<std::string>& configDirSongs = manager->replacementSongsPool;
 		configDirSongs.clear();
 		Utils::addDirToReplacementSongPool(configDirSongs);
 		Utils::addDirToReplacementSongPool(configDirSongs, additionalFolder);
@@ -41,9 +41,11 @@ class $modify(MyMusicDownloadManager, MusicDownloadManager) {
 		const std::string& originalPath = MusicDownloadManager::pathForSong(id); // have jukebox's code run first
 		Manager* manager = Manager::getSharedInstance();
 
-		if (!Utils::modEnabled() || Utils::isStringFromJukebox(originalPath) || !PlayLayer::get() || manager->configDirSongs.empty()) return originalPath;
+		if (!Utils::modEnabled() || Utils::isStringFromJukebox(originalPath) || !PlayLayer::get()) return originalPath;
 
 		if (Utils::getBool("dontPlaySongAtAll")) return "empty.mp3"_spr;
+
+		if (manager->replacementSongsPool.empty()) return originalPath;
 
 		if (Utils::getBool("onlyOneReplacement")) {
 			if (manager->oneReplacementSong.empty() || !std::filesystem::exists(manager->oneReplacementSong))

@@ -13,7 +13,7 @@ public:
 
 	bool calledAlready = false;
 
-	std::vector<std::string> configDirSongs;
+	std::vector<std::string> replacementSongsPool;
 	std::string oneReplacementSong;
 
 	std::vector<int> badSongIDs;

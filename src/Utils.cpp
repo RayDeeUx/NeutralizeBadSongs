@@ -122,7 +122,7 @@ namespace Utils {
 	void refreshReplacementPool(Manager *manager) {
 		manager->oneReplacementSong = getString("oneReplacementSong");
 		if (!PlayLayer::get()) manager->songIDToReplacement.clear(); // better safe than sorry :3
-		std::vector<std::string>& configDirSongs = manager->configDirSongs;
+		std::vector<std::string>& configDirSongs = manager->replacementSongsPool;
 		configDirSongs.clear();
 		Utils::addDirToReplacementSongPool(configDirSongs);
 		Utils::addDirToReplacementSongPool(configDirSongs, Utils::getString("additionalFolder"));
@@ -184,7 +184,7 @@ namespace Utils {
 	}
 
 	std::string randomSongFromConfigDir(Manager* manager) {
-		std::vector<std::string>& vector = manager->configDirSongs;
+		std::vector<std::string>& vector = manager->replacementSongsPool;
 		std::mt19937 randomSeed(std::random_device{}());
 		std::shuffle(vector.begin(), vector.end(), randomSeed);
 		return vector.front();
