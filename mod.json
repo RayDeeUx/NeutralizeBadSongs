@@ -7,7 +7,7 @@
 	},
 	"id": "raydeeux.neutralizebadsongs",
 	"name": "NeutralizeBadSongs",
-	"version": "v0.9.9",
+	"version": "v1.0.0",
 	"developer": "RayDeeUx",
 	"description": "Replace songs (and songs by artists) you dislike. (Alt name: LazyJukebox)",
 	"repository": "https://github.com/RayDeeUx/NeutralizeBadSongs",
