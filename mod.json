@@ -74,12 +74,6 @@
 			"type": "bool",
 			"default": false
 		},
-		"useNotificationInstead": {
-			"name": "Use Geode Notifications For Previously Banned Songs/Artists",
-			"description": "If disabled, you will get FLAlertLayers instead.",
-			"type": "bool",
-			"default": true
-		},
 		"logging": {
 			"name": "Logging",
 			"type": "bool",

@@ -59,7 +59,7 @@ namespace Utils {
 	}
 
 	void showAlert(const std::string &title, const std::string &desc) {
-		if (!Utils::getBool("useNotificationInstead")) return FLAlertLayer::create(nullptr, title.c_str(), desc, "Close", nullptr, 400.f)->show();
+		// if (!Utils::getBool("useNotificationInstead")) return FLAlertLayer::create(nullptr, title.c_str(), desc, "Close", nullptr, 400.f)->show();
 		if (!utils::string::contains(desc, ALREADY_JUKEBOX)) return Notification::create(fmt::format("{} Visit mod settings to revert.", title), NotificationIcon::Info, 2.f)->show();
 		return Notification::create(fmt::format("{} Please double-check your setup.", title), NotificationIcon::Info, 2.f)->show();
 	}
