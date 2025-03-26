@@ -39,7 +39,7 @@
 			"default": ""
 		},
 		"treatUndownloadedSongsAsBlacklistedSongs": {
-			"name": "Treat Non-Downloaded Songs As Blacklisted Songs",
+			"name": "Treat Songs You Haven't Downloaded As Blacklisted Songs",
 			"description": "<cl>Original idea by NotPumpShotgun.</c>\n\nSong you haven't downloaded will be treated as a blacklisted song.",
 			"type": "bool",
 			"default": false
