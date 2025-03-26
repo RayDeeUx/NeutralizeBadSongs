@@ -46,7 +46,11 @@ class $modify(MyMusicDownloadManager, MusicDownloadManager) {
 		if (manager->replacementSongsPool.empty()) return originalPath;
 
 		const SongInfoObject* songInfo = MusicDownloadManager::getSongInfoObject(id);
-		if (!songInfo || Utils::isInNeitherBanList(id, songInfo->m_artistName)) return originalPath;
+		if (!songInfo) return originalPath;
+		if (Utils::isInNeitherBanList(id, songInfo->m_artistName)) {
+			if (!Utils::getBool("treatUndownloadedSongsAsBlacklistedSongs")) return originalPath;
+			if (std::filesystem::exists(originalPath)) return originalPath;
+		}
 
 		if (Utils::getBool("dontPlaySongAtAll")) return "empty.mp3"_spr;
 
