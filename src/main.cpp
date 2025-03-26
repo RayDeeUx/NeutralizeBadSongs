@@ -43,9 +43,12 @@ class $modify(MyMusicDownloadManager, MusicDownloadManager) {
 
 		if (!Utils::modEnabled() || Utils::isStringFromJukebox(originalPath) || !PlayLayer::get()) return originalPath;
 
-		if (Utils::getBool("dontPlaySongAtAll")) return "empty.mp3"_spr;
-
 		if (manager->replacementSongsPool.empty()) return originalPath;
+
+		const SongInfoObject* songInfo = MusicDownloadManager::getSongInfoObject(id);
+		if (!songInfo || Utils::isInNeitherBanList(id, songInfo->m_artistName)) return originalPath;
+
+		if (Utils::getBool("dontPlaySongAtAll")) return "empty.mp3"_spr;
 
 		if (Utils::getBool("onlyOneReplacement")) {
 			if (manager->oneReplacementSong.empty() || !std::filesystem::exists(manager->oneReplacementSong))
@@ -54,9 +57,6 @@ class $modify(MyMusicDownloadManager, MusicDownloadManager) {
 		}
 
 		if (!Utils::getBool("randomReplacementEveryAttempt") && manager->songIDToReplacement.contains(id)) return manager->songIDToReplacement.find(id)->second;
-
-		const SongInfoObject* songInfo = MusicDownloadManager::getSongInfoObject(id);
-		if (!songInfo || Utils::isInNeitherBanList(id, songInfo->m_artistName)) return originalPath;
 
 		const std::string& file = Utils::randomSongFromConfigDir();
 		if (file.empty() || !std::filesystem::exists(file)) return originalPath;
