@@ -74,8 +74,8 @@ class $modify(MyCustomSongWidget, CustomSongWidget) {
 		std::string artistName;
 		std::string songName;
 		std::string extraArtistIDs;
-		int songID;
-		bool isJukeboxPinMenu;
+		int songID = 0;
+		bool isJukeboxPinMenu = false;
 	};
 	static void onModify(auto& self) {
 		(void) self.setHookPriority("CustomSongWidget::init", -3999);
@@ -134,7 +134,7 @@ class $modify(MyCustomSongWidget, CustomSongWidget) {
 		CCMenuItemSpriteExtra* button = CCMenuItemSpriteExtra::create(sprite, this, menuHandler);
 		button->setID(fmt::format("ban-{}-button"_spr, name));
 
-		CCSprite* nameSprite = typeinfo_cast<CCSprite*>(sprite->getTopNode());
+		auto* nameSprite = typeinfo_cast<CCSprite*>(sprite->getTopNode());
 		if (!nameSprite) return button;
 
 		const bool isJukeboxSong = Utils::isIDFromJukebox(m_customSongID);
@@ -158,7 +158,7 @@ class $modify(MyCustomSongWidget, CustomSongWidget) {
 
 		return button;
 	}
-	CCPoint findPos() const {
+	[[nodiscard]] CCPoint findPos() const {
 		// adapted from Jukebox source code by Fleym
 		// then i realized i could reduce it to two lines lmao
 		CCNode* referenceNode = (m_ncsLogo && m_ncsLogo->isVisible()) ? m_ncsLogo : static_cast<CCNode*>(m_songLabel);
@@ -199,7 +199,7 @@ class $modify(MyCustomSongWidget, CustomSongWidget) {
 		if (m_isMusicLibrary || banMenu->getChildrenCount() > 1) return;
 		MyCustomSongWidget::checkOnBanMenu(banMenu);
 	}
-	void checkOnBanMenu(CCNode* banMenu) {
+	void checkOnBanMenu(CCNode* banMenu) const {
 		if (m_isMusicLibrary || banMenu->getChildrenCount() > 1) return;
 		banMenu->setContentHeight(26.f);
 		banMenu->setAnchorPoint({.5, .5});

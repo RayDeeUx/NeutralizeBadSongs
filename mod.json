@@ -38,12 +38,6 @@
 			"type": "folder",
 			"default": ""
 		},
-		"treatUndownloadedSongsAsBlacklistedSongs": {
-			"name": "Treat Songs You Haven't Downloaded As Blacklisted Songs",
-			"description": "<cl>Original idea by NotPumpShotgun.</c>\n\nSong you haven't downloaded will be treated as a blacklisted song.",
-			"type": "bool",
-			"default": false
-		},
 		"randomReplacementEveryAttempt": {
 			"name": "Use Random Replacement Song During Every Attempt",
 			"description": "Works when you have <cl>Only Use One Replacement Song For All Banned Songs</c> disabled.",
@@ -51,7 +45,7 @@
 			"default": false
 		},
 		"onlyOneReplacement": {
-			"name": "Only Use One Replacement Song For Banned Songs/Artists",
+			"name": "Only Use One Replacement Song For All Banned Songs/Artists",
 			"description": "Works when you have <cl>Use Random Replacement Song During Every Attempt</c> disabled.",
 			"type": "bool",
 			"default": false
@@ -74,6 +68,12 @@
 					}
 				]
 			}
+		},
+		"treatUndownloadedSongsAsBlacklistedSongs": {
+			"name": "Treat Songs You Haven't Downloaded As Blacklisted Songs",
+			"description": "<cl>Original idea by NotPumpShotgun.</c>\n\nSong you haven't downloaded will be treated as a blacklisted song.",
+			"type": "bool",
+			"default": false
 		},
 		"dontPlaySongAtAll": {
 			"name": "Don't Play Replacement Songs (Use Empty Song Instead)",
