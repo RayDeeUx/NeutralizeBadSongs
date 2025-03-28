@@ -186,7 +186,7 @@ namespace Utils {
 	std::string randomSongFromConfigDir(Manager* manager) {
 		std::vector<std::string>& vec = manager->replacementSongsPool;
 		if (vec.empty()) return "";
-		static std::mt19937_64 engine(std::random_device{});
+		static std::mt19937_64 engine(std::random_device{}());
 		std::uniform_int_distribution<size_t> dist(0, vec.size() - 1);
 		return vec.at(dist(engine));
 	}
