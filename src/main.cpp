@@ -43,7 +43,8 @@ class $modify(MyMusicDownloadManager, MusicDownloadManager) {
 
 		if (!Utils::modEnabled() || Utils::isStringFromJukebox(originalPath) || !PlayLayer::get()) return originalPath;
 
-		if (manager->replacementSongsPool.empty()) return originalPath;
+		const bool invalidSingleReplacement = !std::filesystem::exists(manager->oneReplacementSong) || manager->oneReplacementSong.empty();
+		if (manager->replacementSongsPool.empty() && (invalidSingleReplacement && Utils::getBool("onlyOneReplacement"))) return originalPath;
 
 		const SongInfoObject* songInfo = MusicDownloadManager::getSongInfoObject(id);
 		if (!songInfo) return originalPath;
