@@ -61,7 +61,4 @@ build-*/
 
 # CLion
 .idea/
-/cmake-*/
-
-# personal
-/logo*/
+/cmake-build-*/
