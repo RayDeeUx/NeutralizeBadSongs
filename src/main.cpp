@@ -50,11 +50,10 @@ class $modify(MyMusicDownloadManager, MusicDownloadManager) {
 			if (std::filesystem::exists(originalPath)) return originalPath;
 		}
 
-		if (Utils::getBool("dontPlaySongAtAll")) return "empty.mp3"_spr;
+		if (Utils::getBool("dontPlaySongAtAll")) return geode::utils::string::pathToString(Mod::get()->getResourcesDir() / "empty.mp3");
 
 		if (Utils::getBool("onlyOneReplacement")) {
-			if (manager->oneReplacementSong.empty() || !std::filesystem::exists(manager->oneReplacementSong))
-				return originalPath;
+			if (manager->oneReplacementSong.empty() || !std::filesystem::exists(manager->oneReplacementSong)) return originalPath;
 			return manager->oneReplacementSong;
 		}
 
@@ -101,7 +100,7 @@ class $modify(MyCustomSongWidget, CustomSongWidget) {
 		this->addChild(MyCustomSongWidget::createBanMenu(fields->isJukeboxPinMenu));
 	}
 	CCMenu* createBanMenu(const bool isJukeboxPinMenu) {
-		const auto fields = m_fields.self();
+		const Fields* fields = m_fields.self();
 		const bool inMusicLibrary = m_isMusicLibrary;
 
 		CCMenu* banMenu = CCMenu::create();
@@ -119,6 +118,7 @@ class $modify(MyCustomSongWidget, CustomSongWidget) {
 		banMenu->setID(BAN_MENU);
 
 		banMenu->setPosition(MyCustomSongWidget::findPos());
+		banMenu->setPositionX(-149.f);
 		if (banMenu->getChildrenCount() == 1 && !inMusicLibrary) MyCustomSongWidget::checkOnBanMenu(banMenu);
 		else if (isJukeboxPinMenu && !inMusicLibrary) banMenu->setPositionY(banMenu->getPositionY() - 16);
 

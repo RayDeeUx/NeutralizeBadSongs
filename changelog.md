@@ -1,4 +1,7 @@
 # NeutralizeBadSongs Changelog
+## v1.1.2
+- Experimental JIT-less iOS support.
+- Refactor how node position is determined.
 ## v1.1.1
 - Experimental iOS support.
 ## v1.1.0

@@ -1,5 +1,5 @@
 {
-	"geode": "4.3.1",
+	"geode": "4.10.0",
 	"gd": {
 		"win": "2.2074",
 		"mac": "2.2074",
@@ -8,7 +8,7 @@
 	},
 	"id": "raydeeux.neutralizebadsongs",
 	"name": "NeutralizeBadSongs",
-	"version": "v1.1.1",
+	"version": "v1.1.2",
 	"developer": "RayDeeUx",
 	"description": "Replace songs (and songs by artists) you dislike. (Alt name: LazyJukebox)",
 	"repository": "https://github.com/RayDeeUx/NeutralizeBadSongs",
