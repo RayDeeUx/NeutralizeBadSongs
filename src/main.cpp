@@ -118,7 +118,7 @@ class $modify(MyCustomSongWidget, CustomSongWidget) {
 		banMenu->setID(BAN_MENU);
 
 		banMenu->setPosition(MyCustomSongWidget::findPos());
-		banMenu->setPositionX(!inMusicLibrary ? -149.f : -157.f);
+		banMenu->setPositionX(!inMusicLibrary ? -149.f : -158.f);
 		if (banMenu->getChildrenCount() == 1 && !inMusicLibrary) MyCustomSongWidget::checkOnBanMenu(banMenu);
 		else if (isJukeboxPinMenu && !inMusicLibrary) banMenu->setPositionY(banMenu->getPositionY() - 16);
 
