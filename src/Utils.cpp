@@ -13,7 +13,7 @@ namespace Utils {
 
 	std::string getString(const std::string& setting, bool isPath) {
 		if (!isPath) return getSetting<std::string>(setting);
-		return geode::utils::string::pathToString::(getSetting<std::filesystem::path>(setting));
+		return geode::utils::string::pathToString(getSetting<std::filesystem::path>(setting));
 	}
 
 	ccColor3B getColor(const std::string& setting) { return getSetting<ccColor3B>(setting); }
