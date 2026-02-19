@@ -27,7 +27,7 @@ $on_mod(Loaded) {
 		Utils::addDirToReplacementSongPool(configDirSongs);
 		Utils::addDirToReplacementSongPool(configDirSongs, additionalFolder);
 		if (!PlayLayer::get()) {
-			if (additionalFolder.string().empty()) return manager->songIDToReplacement.clear();
+			if (geode::utils::string::pathToString(additionalFolder).empty()) return manager->songIDToReplacement.clear();
 			return FLAlertLayer::create("Success!", "Your songs were loaded from your folder.", "Close")->show();
 		}
 	});

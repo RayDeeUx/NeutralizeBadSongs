@@ -13,7 +13,7 @@ namespace Utils {
 
 	std::string getString(const std::string& setting, bool isPath) {
 		if (!isPath) return getSetting<std::string>(setting);
-		return getSetting<std::filesystem::path>(setting).string();
+		return geode::utils::string::pathToString::(getSetting<std::filesystem::path>(setting));
 	}
 
 	ccColor3B getColor(const std::string& setting) { return getSetting<ccColor3B>(setting); }
@@ -103,12 +103,8 @@ namespace Utils {
 	void addDirToReplacementSongPool(std::vector<std::string>& configDirSongs, const std::filesystem::path& folderPath) {
 		if (!std::filesystem::exists(folderPath)) return;
 		for (const auto& file : std::filesystem::directory_iterator(folderPath)) {
-			#ifdef GEODE_IS_WINDOWS
-			std::string tempPath = geode::utils::string::wideToUtf8(file.path().wstring());
-			#else
-			std::string tempPath = file.path().string();
-			#endif
-			std::string tempExtension = file.path().extension().string();
+			std::string tempPath = geode::utils::string::pathToString(file);
+			std::string tempExtension = geode::utils::string::pathToString(file.path().extension());
 			if (Utils::isSupportedExtension(tempExtension)) configDirSongs.push_back(tempPath);
 		}
 	}

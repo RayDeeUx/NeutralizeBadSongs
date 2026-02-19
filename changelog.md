@@ -1,4 +1,6 @@
 # NeutralizeBadSongs Changelog
+## v1.1.3
+- Port to GD 2.2081.
 ## v1.1.2
 - Experimental JIT-less iOS support.
 - Refactor how node position is determined.
