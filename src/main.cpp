@@ -14,13 +14,13 @@ $on_mod(Loaded) {
 	(void) Mod::get()->registerCustomSettingType("configdir", &MyButtonSettingV3::parse);
 	(void) Mod::get()->registerCustomSettingType("updatelists", &MyButtonSettingV3::parse);
 	(void) Utils::refreshLists();
-	listenForSettingChanges("oneReplacementSong", [](std::string oneReplacementSong) {
+	listenForSettingChanges<std::string>("oneReplacementSong", [](std::string oneReplacementSong) {
 		if (!PlayLayer::get()) Manager::getSharedInstance()->oneReplacementSong = std::move(oneReplacementSong);
 	});
-	listenForSettingChanges("randomReplacementEveryAttempt", [](bool unused) {
+	listenForSettingChanges<bool>("randomReplacementEveryAttempt", [](bool unused) {
 		if (!PlayLayer::get()) Manager::getSharedInstance()->songIDToReplacement.clear();
 	});
-	listenForSettingChanges("additionalFolder", [](std::filesystem::path additionalFolder) {
+	listenForSettingChanges<std::filesystem::path>("additionalFolder", [](std::filesystem::path additionalFolder) {
 		Manager* manager = Manager::getSharedInstance();
 		std::vector<std::string>& configDirSongs = manager->replacementSongsPool;
 		configDirSongs.clear();
