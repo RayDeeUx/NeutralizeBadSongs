@@ -1,5 +1,5 @@
 # NeutralizeBadSongs Changelog
-## v1.1.3
+## v1.1.3 and v1.1.4
 - Port to GD 2.2081.
 ## v1.1.2
 - Experimental JIT-less iOS support.
